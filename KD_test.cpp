@@ -466,7 +466,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
 
     // Add hint button
     HWND btnHint = CreateWindow(
-        L"BUTTON", L"Get Hint",
+        L"BUTTON", L"Give Hint",
         WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
         20, windowHeight - 135, 150, 75,
         hwnd, (HMENU)ID_BTN_HINT, hInstance, NULL);
