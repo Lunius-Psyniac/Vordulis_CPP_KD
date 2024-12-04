@@ -398,6 +398,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
                 // Submit guess button
                 case ID_BTN_SUBMIT:
                 {
+                    SetFocus(hwnd);                     // Refocus on game window after clicking the button
                     // Simulate pressing Enter
                     if (currentRow < ROWS - 1 && currentColumn == COLUMNS)
                     {
@@ -410,7 +411,6 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
                         currentColumn = 0;
 
                         InvalidateRect(hwnd, NULL, TRUE);   // Trigger UI update immediately after submitting guess
-                        SetFocus(hwnd);                     // Refocus on game window after clicking the button
                     }
                 }
             }
