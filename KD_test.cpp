@@ -5,7 +5,7 @@
 #endif
 #define ID_BTN_HINT 1
 #define ID_BTN_SUBMIT 2
-// The code uses the Win32++ library for the GUI
+// The code uses Win32 for the GUI and threads
 #include <windows.h>
 #include <string>
 #include <vector>
@@ -159,6 +159,7 @@ string randomWord()
 }
 
 // Select random word as answer
+//string answer = "HELLO";
 string answer = randomWord();
 
 // Compare input guess to answer, filter valid words, recalculate frequency table and hints
