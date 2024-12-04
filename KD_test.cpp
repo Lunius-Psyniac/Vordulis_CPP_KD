@@ -482,21 +482,21 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
 
     // Start thread for background calculations in parallel with the window
     thread calculationThread([&]()
+    {
+        while (isCalculating)
         {
-            while (isCalculating)
-            {
-                unique_lock<mutex> lock(guessMutex);
-                cv.wait(lock, [] { return guessAvailable || !isCalculating; });
+            unique_lock<mutex> lock(guessMutex);
+            cv.wait(lock, [] { return guessAvailable || !isCalculating; });
 
-                if (!isCalculating)
-                {
-                    break;
-                }
-                string guess(sharedGuess.begin(), sharedGuess.end());
-                guessAvailable = false;
-                checkGuess(guess, answer, hwnd);    // Check guess and answer
+            if (!isCalculating)
+            {
+                break;
             }
-        });
+            string guess(sharedGuess.begin(), sharedGuess.end());
+            guessAvailable = false;
+            checkGuess(guess, answer, hwnd);    // Check guess and answer
+        }
+    });
 
     // Run message loop with window
     MSG msg = {};
